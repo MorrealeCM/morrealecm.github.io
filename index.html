@@ -228,9 +228,19 @@
         color: #2c4ed8;
       }
 
+      .badge.intro-assessed {
+        background: #dfe8ff;
+        color: #1f3bb5;
+      }
+
       .badge.reinforce {
         background: #fff6db;
         color: #9c6b00;
+      }
+
+      .badge.reinforce-assessed {
+        background: #ffeab5;
+        color: #7a5200;
       }
 
       .badge.mastery {
@@ -238,7 +248,7 @@
         color: #16734a;
       }
 
-      .badge.assessment {
+      .badge.mastery-assessed {
         background: #ffe9e6;
         color: #b63b2d;
       }
@@ -380,9 +390,11 @@
             </div>
             <div class="level-toggle" role="group" aria-label="Select learning level">
               <button type="button" data-level="intro" class="active">Introductory</button>
-              <button type="button" data-level="reinforce">Reinforcement</button>
+              <button type="button" data-level="intro-assessed">Introductory-Assessed</button>
+              <button type="button" data-level="reinforce">Reinforced</button>
+              <button type="button" data-level="reinforce-assessed">Reinforced-Assessed</button>
               <button type="button" data-level="mastery">Mastery</button>
-              <button type="button" data-level="assessment">Assessment only</button>
+              <button type="button" data-level="mastery-assessed">Mastery-Assessed</button>
             </div>
             <div class="hero-actions">
               <button class="button" type="button" id="add-entry">Add to map</button>
@@ -390,9 +402,11 @@
             </div>
             <div class="legend" aria-label="Legend">
               <span><span class="badge intro">Intro</span> Introduce new concepts</span>
-              <span><span class="badge reinforce">Reinforce</span> Practice &amp; deepen</span>
+              <span><span class="badge intro-assessed">Intro-Assessed</span> Introduce with evidence</span>
+              <span><span class="badge reinforce">Reinforced</span> Practice &amp; deepen</span>
+              <span><span class="badge reinforce-assessed">Reinforced-Assessed</span> Practice with evidence</span>
               <span><span class="badge mastery">Mastery</span> Capstone-level proficiency</span>
-              <span><span class="badge assessment">Assess</span> Direct evidence collected</span>
+              <span><span class="badge mastery-assessed">Mastery-Assessed</span> Capstone with evidence</span>
             </div>
           </div>
           <div class="card">
@@ -492,16 +506,20 @@
 
       const levelLabels = {
         intro: "Introductory",
-        reinforce: "Reinforcement",
+        "intro-assessed": "Introductory-Assessed",
+        reinforce: "Reinforced",
+        "reinforce-assessed": "Reinforced-Assessed",
         mastery: "Mastery",
-        assessment: "Assessment only",
+        "mastery-assessed": "Mastery-Assessed",
       };
 
       const levelBadgeClass = {
         intro: "intro",
+        "intro-assessed": "intro-assessed",
         reinforce: "reinforce",
+        "reinforce-assessed": "reinforce-assessed",
         mastery: "mastery",
-        assessment: "assessment",
+        "mastery-assessed": "mastery-assessed",
       };
 
       const updateOutcomeOptions = () => {
@@ -552,9 +570,17 @@
 
         mappingEntries.forEach((entry) => {
           courseSet.add(entry.course);
-          outcomeCounts[entry.outcome] = outcomeCounts[entry.outcome] || { intro: 0, reinforce: 0, mastery: 0, assessment: 0 };
+          outcomeCounts[entry.outcome] =
+            outcomeCounts[entry.outcome] || {
+              intro: 0,
+              "intro-assessed": 0,
+              reinforce: 0,
+              "reinforce-assessed": 0,
+              mastery: 0,
+              "mastery-assessed": 0,
+            };
           outcomeCounts[entry.outcome][entry.level] += 1;
-          if (entry.level === "assessment" || entry.evidence) {
+          if (entry.level.includes("assessed") || entry.evidence) {
             assessmentEntries.push(entry);
           }
         });
@@ -563,7 +589,7 @@
         statAssessments.textContent = assessmentEntries.length.toString();
 
         const outcomeLines = Object.entries(outcomeCounts).map(([outcome, counts]) => {
-          return `${outcome}: I ${counts.intro} · R ${counts.reinforce} · M ${counts.mastery} · A ${counts.assessment}`;
+          return `${outcome}: I ${counts.intro} · IA ${counts["intro-assessed"]} · R ${counts.reinforce} · RA ${counts["reinforce-assessed"]} · M ${counts.mastery} · MA ${counts["mastery-assessed"]}`;
         });
         summaryOutcomes.textContent =
           outcomeLines.length > 0
