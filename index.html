@@ -3,10 +3,452 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Course Evaluation teaching evaluation effectiveness</title>
+    <title>Course Evaluation Action Lab</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f7f8fb;
+        --surface: #ffffff;
+        --text: #1c1f2a;
+        --muted: #5c6478;
+        --accent: #2d5bff;
+        --accent-soft: #e2e8ff;
+        --border: #dde2f0;
+        --success: #1c7c54;
+        font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.5;
+      }
+
+      header {
+        background: linear-gradient(120deg, #eff3ff 0%, #ffffff 60%);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 2.5rem 1.5rem;
+      }
+
+      .hero {
+        display: grid;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 3vw, 2.8rem);
+        margin-bottom: 0.75rem;
+      }
+
+      .hero p {
+        color: var(--muted);
+        margin: 0 0 1.5rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.25rem;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        font-weight: 600;
+        text-decoration: none;
+        color: #fff;
+        background: var(--accent);
+      }
+
+      .button.secondary {
+        background: var(--surface);
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+
+      .card-grid {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+
+      .card {
+        background: var(--surface);
+        border-radius: 16px;
+        padding: 1.5rem;
+        border: 1px solid var(--border);
+        box-shadow: 0 12px 30px rgba(30, 35, 58, 0.05);
+      }
+
+      .card h3 {
+        margin-top: 0;
+      }
+
+      .pill {
+        display: inline-flex;
+        padding: 0.35rem 0.8rem;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+
+      section {
+        padding: 2.5rem 0;
+      }
+
+      .section-title {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .section-title h2 {
+        margin: 0;
+      }
+
+      .stepper {
+        display: grid;
+        gap: 1rem;
+      }
+
+      details {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: var(--surface);
+        padding: 1rem 1.25rem;
+      }
+
+      details[open] {
+        border-color: var(--accent);
+        box-shadow: 0 8px 20px rgba(45, 91, 255, 0.12);
+      }
+
+      summary {
+        font-weight: 600;
+        cursor: pointer;
+        list-style: none;
+      }
+
+      summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .summary-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .tag {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--success);
+        background: #e6f6ef;
+        padding: 0.25rem 0.6rem;
+        border-radius: 999px;
+      }
+
+      .resource-list {
+        display: grid;
+        gap: 1rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .resource-list li {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1rem;
+        background: var(--surface);
+      }
+
+      .resource-list a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .cta-panel {
+        background: var(--accent);
+        color: #fff;
+        border-radius: 18px;
+        padding: 2rem;
+        display: grid;
+        gap: 1rem;
+      }
+
+      .cta-panel a {
+        color: #fff;
+      }
+
+      .input-grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+
+      label {
+        display: grid;
+        gap: 0.5rem;
+        font-weight: 600;
+        color: var(--muted);
+      }
+
+      select,
+      textarea,
+      input {
+        padding: 0.6rem 0.75rem;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        font: inherit;
+      }
+
+      textarea {
+        min-height: 120px;
+      }
+
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 2rem 0 3rem;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      @media (min-width: 860px) {
+        .hero {
+          grid-template-columns: 1.2fr 0.8fr;
+        }
+      }
+    </style>
   </head>
   <body>
-    <h1>Course Evaluation teaching evaluation effectiveness</h1>
-    <p>Placeholder text for course evaluation details.</p>
+    <header>
+      <div class="container hero">
+        <div>
+          <span class="pill">Course Evaluation Action Lab</span>
+          <h1>Turn student feedback into a clear teaching improvement plan.</h1>
+          <p>
+            Upload your course evaluation insights, identify the most important themes, and
+            receive step-by-step guidance and resources to strengthen your teaching practice.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#action-plan">Build my action plan</a>
+            <a class="button secondary" href="#resources">Explore resources</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Quick Snapshot</h3>
+          <p>
+            Focus on one high-impact change, communicate your plan to students, and revisit
+            your progress mid-term.
+          </p>
+          <div class="card-grid">
+            <div>
+              <span class="pill">85%</span>
+              <p>of students want clearer expectations.</p>
+            </div>
+            <div>
+              <span class="pill">+12%</span>
+              <p>engagement when feedback is acknowledged.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section aria-labelledby="insights-title">
+        <div class="section-title">
+          <span class="pill">1</span>
+          <h2 id="insights-title">Capture your evaluation insights</h2>
+        </div>
+        <div class="card">
+          <div class="input-grid">
+            <label>
+              Course format
+              <select>
+                <option>In-person</option>
+                <option>Hybrid</option>
+                <option>Online</option>
+              </select>
+            </label>
+            <label>
+              Primary goal
+              <select>
+                <option>Increase clarity</option>
+                <option>Boost engagement</option>
+                <option>Improve assessment feedback</option>
+                <option>Support inclusivity</option>
+              </select>
+            </label>
+            <label>
+              Confidence level
+              <select>
+                <option>Just getting started</option>
+                <option>Building momentum</option>
+                <option>Ready to lead change</option>
+              </select>
+            </label>
+          </div>
+          <label>
+            Key themes from evaluations
+            <textarea
+              placeholder="Example: Students want clearer rubrics, more examples, and more chances to ask questions."
+            ></textarea>
+          </label>
+        </div>
+      </section>
+
+      <section id="action-plan" aria-labelledby="action-title">
+        <div class="section-title">
+          <span class="pill">2</span>
+          <h2 id="action-title">Step-by-step improvement pathway</h2>
+        </div>
+        <div class="stepper">
+          <details open>
+            <summary>
+              <div class="summary-row">
+                <span>Step 1: Translate feedback into 1-2 focus areas</span>
+                <span class="tag">Start here</span>
+              </div>
+            </summary>
+            <p>
+              Group similar comments together and choose one high-impact change. Aim for something
+              you can share with students in the first week.
+            </p>
+            <ul>
+              <li>Highlight repeated themes (clarity, pacing, assessment).</li>
+              <li>Identify one quick win and one longer-term improvement.</li>
+              <li>Draft a short statement on what will change next term.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>
+              <div class="summary-row">
+                <span>Step 2: Co-design solutions with students</span>
+                <span class="tag">Collaborate</span>
+              </div>
+            </summary>
+            <p>
+              Invite students to offer ideas. This builds trust and often surfaces small adjustments
+              that make the biggest difference.
+            </p>
+            <ul>
+              <li>Share a 5-minute survey during the first week.</li>
+              <li>Offer 2-3 options and let students vote.</li>
+              <li>Communicate what will be piloted and why.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>
+              <div class="summary-row">
+                <span>Step 3: Implement with structured support</span>
+                <span class="tag">Deliver</span>
+              </div>
+            </summary>
+            <p>
+              Tie your action to weekly routines. Use quick check-ins, rubric refreshers, or
+              open-lab sessions to reinforce change.
+            </p>
+            <ul>
+              <li>Add a short agenda slide to every class.</li>
+              <li>Use mid-term feedback to confirm progress.</li>
+              <li>Track outcomes in a simple teaching journal.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>
+              <div class="summary-row">
+                <span>Step 4: Reflect and report back</span>
+                <span class="tag">Close the loop</span>
+              </div>
+            </summary>
+            <p>
+              Share what changed and what you learned. Closing the loop improves response rates
+              and trust in future evaluations.
+            </p>
+            <ul>
+              <li>Provide a short end-of-term update to students.</li>
+              <li>Save evidence of what improved for annual reviews.</li>
+              <li>Celebrate successes and note the next focus area.</li>
+            </ul>
+          </details>
+        </div>
+      </section>
+
+      <section id="resources" aria-labelledby="resource-title">
+        <div class="section-title">
+          <span class="pill">3</span>
+          <h2 id="resource-title">Resources &amp; connections</h2>
+        </div>
+        <ul class="resource-list">
+          <li>
+            <a href="https://www.chronicle.com/article/closing-the-feedback-loop" target="_blank" rel="noreferrer"
+              >Closing the feedback loop</a
+            >
+            <p>Strategies for communicating improvements to students.</p>
+          </li>
+          <li>
+            <a href="https://ctl.mit.edu/teaching-resources" target="_blank" rel="noreferrer"
+              >Teaching resources hub</a
+            >
+            <p>Evidence-based practices for inclusive and engaging instruction.</p>
+          </li>
+          <li>
+            <a href="https://www.niu.edu/teaching/resources/evaluating-teaching.shtml" target="_blank" rel="noreferrer"
+              >Evaluating teaching toolkit</a
+            >
+            <p>Guides for interpreting course evaluation data thoughtfully.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="support-title">
+        <div class="section-title">
+          <span class="pill">4</span>
+          <h2 id="support-title">Need a tailored plan?</h2>
+        </div>
+        <div class="cta-panel">
+          <p>
+            University at Buffalo &middot; Office of Curriculum, Assessment and Teaching
+            Transformation: connect with a teaching coach, share your evaluation highlights, and
+            receive a personalized improvement plan.
+          </p>
+          <a class="button secondary" href="mailto:ubcatt@buffalo.edu"
+            >Email ubcatt@buffalo.edu</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>
+          Accessibility-first design: semantic headings, high-contrast colors, and keyboard-friendly
+          interaction.
+        </p>
+      </div>
+    </footer>
   </body>
 </html>
