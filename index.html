@@ -3,18 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Course Evaluation Action Lab</title>
+    <title>Undergraduate Curriculum Mapping Studio</title>
     <style>
       :root {
         color-scheme: light;
-        --bg: #f7f8fb;
+        --bg: #f5f6fb;
         --surface: #ffffff;
-        --text: #1c1f2a;
-        --muted: #5c6478;
-        --accent: #2d5bff;
-        --accent-soft: #e2e8ff;
-        --border: #dde2f0;
-        --success: #1c7c54;
+        --text: #161a2b;
+        --muted: #5c6578;
+        --accent: #3f5cff;
+        --accent-soft: #e4e9ff;
+        --border: #dfe3f1;
+        --success: #1f7a54;
+        --warning: #e9b949;
+        --focus: #ff7a59;
         font-family: "Inter", "Segoe UI", system-ui, sans-serif;
       }
 
@@ -26,16 +28,16 @@
         margin: 0;
         background: var(--bg);
         color: var(--text);
-        line-height: 1.5;
+        line-height: 1.6;
       }
 
       header {
-        background: linear-gradient(120deg, #eff3ff 0%, #ffffff 60%);
+        background: linear-gradient(130deg, #eef1ff 0%, #ffffff 65%);
         border-bottom: 1px solid var(--border);
       }
 
       .container {
-        max-width: 1100px;
+        max-width: 1200px;
         margin: 0 auto;
         padding: 2.5rem 1.5rem;
       }
@@ -47,19 +49,30 @@
       }
 
       .hero h1 {
-        font-size: clamp(2rem, 3vw, 2.8rem);
+        font-size: clamp(2.3rem, 3vw, 3rem);
         margin-bottom: 0.75rem;
       }
 
       .hero p {
-        color: var(--muted);
         margin: 0 0 1.5rem;
+        color: var(--muted);
+      }
+
+      .pill {
+        display: inline-flex;
+        padding: 0.35rem 0.85rem;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
       }
 
       .hero-actions {
         display: flex;
-        flex-wrap: wrap;
         gap: 1rem;
+        flex-wrap: wrap;
       }
 
       .button {
@@ -74,6 +87,7 @@
         text-decoration: none;
         color: #fff;
         background: var(--accent);
+        cursor: pointer;
       }
 
       .button.secondary {
@@ -82,35 +96,33 @@
         border-color: var(--accent);
       }
 
-      .card-grid {
-        display: grid;
-        gap: 1.5rem;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      }
-
       .card {
         background: var(--surface);
-        border-radius: 16px;
+        border-radius: 18px;
         padding: 1.5rem;
         border: 1px solid var(--border);
-        box-shadow: 0 12px 30px rgba(30, 35, 58, 0.05);
+        box-shadow: 0 18px 35px rgba(34, 40, 70, 0.06);
       }
 
-      .card h3 {
-        margin-top: 0;
+      .card-grid {
+        display: grid;
+        gap: 1rem;
       }
 
-      .pill {
-        display: inline-flex;
-        padding: 0.35rem 0.8rem;
-        border-radius: 999px;
-        background: var(--accent-soft);
-        color: var(--accent);
-        font-size: 0.8rem;
-        font-weight: 600;
+      .stat {
+        display: grid;
+        gap: 0.4rem;
+        padding: 1rem;
+        border-radius: 14px;
+        background: #f3f5ff;
+        border: 1px solid #e1e6ff;
       }
 
-      section {
+      .stat strong {
+        font-size: 1.4rem;
+      }
+
+      main section {
         padding: 2.5rem 0;
       }
 
@@ -125,87 +137,10 @@
         margin: 0;
       }
 
-      .stepper {
-        display: grid;
-        gap: 1rem;
-      }
-
-      details {
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        background: var(--surface);
-        padding: 1rem 1.25rem;
-      }
-
-      details[open] {
-        border-color: var(--accent);
-        box-shadow: 0 8px 20px rgba(45, 91, 255, 0.12);
-      }
-
-      summary {
-        font-weight: 600;
-        cursor: pointer;
-        list-style: none;
-      }
-
-      summary::-webkit-details-marker {
-        display: none;
-      }
-
-      .summary-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-      }
-
-      .tag {
-        font-size: 0.75rem;
-        font-weight: 600;
-        color: var(--success);
-        background: #e6f6ef;
-        padding: 0.25rem 0.6rem;
-        border-radius: 999px;
-      }
-
-      .resource-list {
-        display: grid;
-        gap: 1rem;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .resource-list li {
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 1rem;
-        background: var(--surface);
-      }
-
-      .resource-list a {
-        color: var(--accent);
-        text-decoration: none;
-        font-weight: 600;
-      }
-
-      .cta-panel {
-        background: var(--accent);
-        color: #fff;
-        border-radius: 18px;
-        padding: 2rem;
-        display: grid;
-        gap: 1rem;
-      }
-
-      .cta-panel a {
-        color: #fff;
-      }
-
       .input-grid {
         display: grid;
         gap: 1rem;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       }
 
       label {
@@ -222,10 +157,117 @@
         border-radius: 10px;
         border: 1px solid var(--border);
         font: inherit;
+        background: #fff;
       }
 
       textarea {
-        min-height: 120px;
+        min-height: 110px;
+        resize: vertical;
+      }
+
+      .map-layout {
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      .level-toggle {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .level-toggle button {
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        padding: 0.5rem 0.9rem;
+        font-weight: 600;
+        background: #fff;
+        cursor: pointer;
+      }
+
+      .level-toggle button.active {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: var(--accent-soft);
+      }
+
+      .map-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+        font-size: 0.95rem;
+      }
+
+      .map-table th,
+      .map-table td {
+        border: 1px solid var(--border);
+        padding: 0.75rem;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      .map-table th {
+        background: #f7f8ff;
+        font-weight: 700;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.3rem 0.7rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .badge.intro {
+        background: #e9f0ff;
+        color: #2c4ed8;
+      }
+
+      .badge.reinforce {
+        background: #fff6db;
+        color: #9c6b00;
+      }
+
+      .badge.mastery {
+        background: #e9f9f0;
+        color: #16734a;
+      }
+
+      .badge.assessment {
+        background: #ffe9e6;
+        color: #b63b2d;
+      }
+
+      .summary-grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+
+      .summary-card {
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 1rem;
+        background: var(--surface);
+      }
+
+      .legend {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+
+      .legend span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--muted);
+        font-weight: 600;
       }
 
       footer {
@@ -235,9 +277,14 @@
         font-size: 0.95rem;
       }
 
-      @media (min-width: 860px) {
+      @media (min-width: 900px) {
         .hero {
-          grid-template-columns: 1.2fr 0.8fr;
+          grid-template-columns: 1.1fr 0.9fr;
+        }
+
+        .map-layout {
+          grid-template-columns: 1.05fr 0.95fr;
+          align-items: start;
         }
       }
     </style>
@@ -246,31 +293,30 @@
     <header>
       <div class="container hero">
         <div>
-          <span class="pill">Course Evaluation Data to Teaching Effectiveness Action Lab</span>
-          <h1>Turn student feedback into a clear teaching improvement plan.</h1>
+          <span class="pill">Undergraduate Curriculum Mapping Studio</span>
+          <h1>Build a shared view of where learning is introduced, reinforced, mastered, and assessed.</h1>
           <p>
-            Gain insight from your course evaluations, identify the most important themes, and
-            receive step-by-step guidance and resources to strengthen your teaching practice.
+            Program coordinators can capture course-level coverage, flag assessment points, and
+            export a ready-to-discuss map for curriculum committee meetings.
           </p>
           <div class="hero-actions">
-            <a class="button" href="#action-plan">Build my action plan</a>
-            <a class="button secondary" href="#resources">Explore resources</a>
+            <a class="button" href="#mapping">Start mapping</a>
+            <a class="button secondary" href="#summary">Review coverage</a>
           </div>
         </div>
         <div class="card">
-          <h3>Quick Snapshot</h3>
-          <p>
-            Focus on one high-impact change, communicate your plan to students, and revisit
-            your progress mid-term.
-          </p>
-          <div class="card-grid">
-            <div>
-              <span class="pill">85%</span>
-              <p>of students want clearer expectations.</p>
+          <h3>Program Coverage Snapshot</h3>
+          <p>Live counts update as you map courses to program outcomes.</p>
+          <div class="card-grid" id="hero-stats">
+            <div class="stat">
+              <span class="pill">Courses mapped</span>
+              <strong id="stat-courses">0</strong>
+              <span class="muted">Courses with at least one outcome.</span>
             </div>
-            <div>
-              <span class="pill">+12%</span>
-              <p>engagement when feedback is acknowledged.</p>
+            <div class="stat">
+              <span class="pill">Assessment points</span>
+              <strong id="stat-assessments">0</strong>
+              <span class="muted">Where direct evidence is collected.</span>
             </div>
           </div>
         </div>
@@ -278,166 +324,142 @@
     </header>
 
     <main class="container">
-      <section aria-labelledby="insights-title">
+      <section aria-labelledby="setup-title">
         <div class="section-title">
           <span class="pill">1</span>
-          <h2 id="insights-title">Capture your evaluation insights</h2>
+          <h2 id="setup-title">Set the program context</h2>
         </div>
         <div class="card">
           <div class="input-grid">
             <label>
-              Course format
-              <select>
-                <option>In-person</option>
-                <option>Hybrid</option>
-                <option>Online</option>
+              Program name
+              <input id="program-name" placeholder="Example: BS in Biology" />
+            </label>
+            <label>
+              Review cycle
+              <select id="review-cycle">
+                <option>Annual curriculum check-in</option>
+                <option>3-year program review</option>
+                <option>5-year accreditation review</option>
               </select>
             </label>
             <label>
-              Primary goal
-              <select>
-                <option>Increase clarity</option>
-                <option>Boost engagement</option>
-                <option>Improve assessment feedback</option>
-                <option>Support inclusivity</option>
-              </select>
-            </label>
-            <label>
-              Confidence level
-              <select>
-                <option>Just getting started</option>
-                <option>Building momentum</option>
-                <option>Ready to lead change</option>
-              </select>
+              Coordinator team
+              <input id="program-team" placeholder="Example: Advising + Faculty Taskforce" />
             </label>
           </div>
           <label>
-            Key themes from evaluations
-            <textarea
-              placeholder="Example: Students want clearer rubrics, more examples, and more chances to ask questions."
-            ></textarea>
+            Program-level outcomes (one per line)
+            <textarea id="program-outcomes" placeholder="Outcome 1: Apply scientific reasoning\nOutcome 2: Communicate in professional formats\nOutcome 3: Use data analysis tools"></textarea>
           </label>
         </div>
       </section>
 
-      <section id="action-plan" aria-labelledby="action-title">
+      <section id="mapping" aria-labelledby="mapping-title">
         <div class="section-title">
           <span class="pill">2</span>
-          <h2 id="action-title">Step-by-step improvement pathway</h2>
+          <h2 id="mapping-title">Map outcomes to courses</h2>
         </div>
-        <div class="stepper">
-          <details open>
-            <summary>
-              <div class="summary-row">
-                <span>Step 1: Translate feedback into 1-2 focus areas</span>
-                <span class="tag">Start here</span>
-              </div>
-            </summary>
-            <p>
-              Group similar comments together and choose one high-impact change. Aim for something
-              you can share with students in the first week.
-            </p>
-            <ul>
-              <li>Highlight repeated themes (clarity, pacing, assessment).</li>
-              <li>Identify one quick win and one longer-term improvement.</li>
-              <li>Draft a short statement on what will change next term.</li>
-            </ul>
-          </details>
-          <details>
-            <summary>
-              <div class="summary-row">
-                <span>Step 2: Co-design solutions with students</span>
-                <span class="tag">Collaborate</span>
-              </div>
-            </summary>
-            <p>
-              Invite students to offer ideas. This builds trust and often surfaces small adjustments
-              that make the biggest difference.
-            </p>
-            <ul>
-              <li>Share a 5-minute survey during the first week.</li>
-              <li>Offer 2-3 options and let students vote.</li>
-              <li>Communicate what will be piloted and why.</li>
-            </ul>
-          </details>
-          <details>
-            <summary>
-              <div class="summary-row">
-                <span>Step 3: Implement with structured support</span>
-                <span class="tag">Deliver</span>
-              </div>
-            </summary>
-            <p>
-              Tie your action to weekly routines. Use quick check-ins, rubric refreshers, or
-              open-lab sessions to reinforce change.
-            </p>
-            <ul>
-              <li>Add a short agenda slide to every class.</li>
-              <li>Use mid-term feedback to confirm progress.</li>
-              <li>Track outcomes in a simple teaching journal.</li>
-            </ul>
-          </details>
-          <details>
-            <summary>
-              <div class="summary-row">
-                <span>Step 4: Reflect and report back</span>
-                <span class="tag">Close the loop</span>
-              </div>
-            </summary>
-            <p>
-              Share what changed and what you learned. Closing the loop improves response rates
-              and trust in future evaluations.
-            </p>
-            <ul>
-              <li>Provide a short end-of-term update to students.</li>
-              <li>Save evidence of what improved for annual reviews.</li>
-              <li>Celebrate successes and note the next focus area.</li>
-            </ul>
-          </details>
+        <div class="map-layout">
+          <div class="card">
+            <h3>Add a mapping entry</h3>
+            <p class="muted">Choose the learning level and indicate if this is an assessment point.</p>
+            <div class="input-grid">
+              <label>
+                Course
+                <input id="course-name" placeholder="Example: BIO 201 Genetics" />
+              </label>
+              <label>
+                Outcome
+                <select id="outcome-select"></select>
+              </label>
+              <label>
+                Assessment evidence
+                <input id="assessment-evidence" placeholder="Example: Lab report rubric" />
+              </label>
+            </div>
+            <div class="level-toggle" role="group" aria-label="Select learning level">
+              <button type="button" data-level="intro" class="active">Introductory</button>
+              <button type="button" data-level="reinforce">Reinforcement</button>
+              <button type="button" data-level="mastery">Mastery</button>
+              <button type="button" data-level="assessment">Assessment only</button>
+            </div>
+            <div class="hero-actions">
+              <button class="button" type="button" id="add-entry">Add to map</button>
+              <button class="button secondary" type="button" id="clear-map">Clear map</button>
+            </div>
+            <div class="legend" aria-label="Legend">
+              <span><span class="badge intro">Intro</span> Introduce new concepts</span>
+              <span><span class="badge reinforce">Reinforce</span> Practice &amp; deepen</span>
+              <span><span class="badge mastery">Mastery</span> Capstone-level proficiency</span>
+              <span><span class="badge assessment">Assess</span> Direct evidence collected</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Live curriculum map</h3>
+            <table class="map-table" aria-describedby="map-caption">
+              <caption id="map-caption" class="muted">
+                Each row represents a course-to-outcome alignment entry.
+              </caption>
+              <thead>
+                <tr>
+                  <th>Course</th>
+                  <th>Outcome</th>
+                  <th>Level</th>
+                  <th>Assessment evidence</th>
+                </tr>
+              </thead>
+              <tbody id="map-body"></tbody>
+            </table>
+          </div>
         </div>
       </section>
 
-      <section id="resources" aria-labelledby="resource-title">
+      <section id="summary" aria-labelledby="summary-title">
         <div class="section-title">
           <span class="pill">3</span>
-          <h2 id="resource-title">Resources &amp; connections</h2>
+          <h2 id="summary-title">Coverage &amp; assessment summary</h2>
         </div>
-        <ul class="resource-list">
-          <li>
-            <a href="https://www.chronicle.com/article/closing-the-feedback-loop" target="_blank" rel="noreferrer"
-              >Closing the feedback loop</a
-            >
-            <p>Strategies for communicating improvements to students.</p>
-          </li>
-          <li>
-            <a href="https://ctl.mit.edu/teaching-resources" target="_blank" rel="noreferrer"
-              >Teaching resources hub</a
-            >
-            <p>Evidence-based practices for inclusive and engaging instruction.</p>
-          </li>
-          <li>
-            <a href="https://www.niu.edu/teaching/resources/evaluating-teaching.shtml" target="_blank" rel="noreferrer"
-              >Evaluating teaching toolkit</a
-            >
-            <p>Guides for interpreting course evaluation data thoughtfully.</p>
-          </li>
-        </ul>
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>Outcome coverage</h4>
+            <p class="muted" id="summary-outcomes">Add outcomes to generate a coverage summary.</p>
+          </div>
+          <div class="summary-card">
+            <h4>Assessment touchpoints</h4>
+            <p class="muted" id="summary-assessments">Assessment evidence will appear here.</p>
+          </div>
+          <div class="summary-card">
+            <h4>Program checklist</h4>
+            <ul class="muted" id="summary-checklist">
+              <li>At least one introductory course per outcome.</li>
+              <li>Reinforcement in the sophomore/junior sequence.</li>
+              <li>Mastery or assessment in a capstone course.</li>
+            </ul>
+          </div>
+        </div>
       </section>
 
-      <section aria-labelledby="support-title">
+      <section aria-labelledby="next-title">
         <div class="section-title">
           <span class="pill">4</span>
-          <h2 id="support-title">Need a tailored plan?</h2>
+          <h2 id="next-title">Next steps for coordinators</h2>
         </div>
-        <div class="cta-panel">
-          <p>
-            University at Buffalo &middot; Office of Curriculum, Assessment and Teaching
-            Transformation: connect with an instructional consultant, share your evaluation highlights, and
-            receive a personalized improvement plan.
-          </p>
-          <a class="button secondary" href="mailto:ubcatt@buffalo.edu"
-            >Email ubcatt@buffalo.edu</a
-          >
+        <div class="card">
+          <div class="input-grid">
+            <label>
+              Meeting date
+              <input type="date" id="meeting-date" />
+            </label>
+            <label>
+              Key decision needed
+              <input id="decision-needed" placeholder="Example: Adjust lab sequence" />
+            </label>
+            <label>
+              Shareable summary
+              <input id="shareable-summary" placeholder="Example: Draft map for curriculum committee" />
+            </label>
+          </div>
         </div>
       </section>
     </main>
@@ -445,10 +467,172 @@
     <footer>
       <div class="container">
         <p>
-          Accessibility-first design: semantic headings, high-contrast colors, and keyboard-friendly
-          interaction.
+          Designed for undergraduate program review: transparent alignment, inclusive terminology,
+          and actionable assessment checkpoints.
         </p>
       </div>
     </footer>
+
+    <script>
+      const outcomesInput = document.getElementById("program-outcomes");
+      const outcomeSelect = document.getElementById("outcome-select");
+      const courseInput = document.getElementById("course-name");
+      const evidenceInput = document.getElementById("assessment-evidence");
+      const mapBody = document.getElementById("map-body");
+      const addEntryButton = document.getElementById("add-entry");
+      const clearMapButton = document.getElementById("clear-map");
+      const summaryOutcomes = document.getElementById("summary-outcomes");
+      const summaryAssessments = document.getElementById("summary-assessments");
+      const statCourses = document.getElementById("stat-courses");
+      const statAssessments = document.getElementById("stat-assessments");
+      const levelButtons = Array.from(document.querySelectorAll(".level-toggle button"));
+
+      let selectedLevel = "intro";
+      const mappingEntries = [];
+
+      const levelLabels = {
+        intro: "Introductory",
+        reinforce: "Reinforcement",
+        mastery: "Mastery",
+        assessment: "Assessment only",
+      };
+
+      const levelBadgeClass = {
+        intro: "intro",
+        reinforce: "reinforce",
+        mastery: "mastery",
+        assessment: "assessment",
+      };
+
+      const updateOutcomeOptions = () => {
+        const lines = outcomesInput.value
+          .split("\n")
+          .map((line) => line.trim())
+          .filter((line) => line.length > 0);
+
+        outcomeSelect.innerHTML = "";
+        if (lines.length === 0) {
+          const option = document.createElement("option");
+          option.textContent = "Add program outcomes first";
+          option.disabled = true;
+          option.selected = true;
+          outcomeSelect.append(option);
+          return;
+        }
+
+        lines.forEach((line, index) => {
+          const option = document.createElement("option");
+          option.value = line;
+          option.textContent = line;
+          if (index === 0) {
+            option.selected = true;
+          }
+          outcomeSelect.append(option);
+        });
+      };
+
+      const renderMap = () => {
+        mapBody.innerHTML = "";
+        mappingEntries.forEach((entry) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${entry.course}</td>
+            <td>${entry.outcome}</td>
+            <td><span class="badge ${levelBadgeClass[entry.level]}">${levelLabels[entry.level]}</span></td>
+            <td>${entry.evidence || "—"}</td>
+          `;
+          mapBody.append(row);
+        });
+      };
+
+      const updateSummary = () => {
+        const outcomeCounts = {};
+        const assessmentEntries = [];
+        const courseSet = new Set();
+
+        mappingEntries.forEach((entry) => {
+          courseSet.add(entry.course);
+          outcomeCounts[entry.outcome] = outcomeCounts[entry.outcome] || { intro: 0, reinforce: 0, mastery: 0, assessment: 0 };
+          outcomeCounts[entry.outcome][entry.level] += 1;
+          if (entry.level === "assessment" || entry.evidence) {
+            assessmentEntries.push(entry);
+          }
+        });
+
+        statCourses.textContent = courseSet.size.toString();
+        statAssessments.textContent = assessmentEntries.length.toString();
+
+        const outcomeLines = Object.entries(outcomeCounts).map(([outcome, counts]) => {
+          return `${outcome}: I ${counts.intro} · R ${counts.reinforce} · M ${counts.mastery} · A ${counts.assessment}`;
+        });
+        summaryOutcomes.textContent =
+          outcomeLines.length > 0
+            ? outcomeLines.join("\n")
+            : "Add outcomes to generate a coverage summary.";
+
+        summaryAssessments.innerHTML = "";
+        if (assessmentEntries.length === 0) {
+          summaryAssessments.textContent = "Assessment evidence will appear here.";
+          return;
+        }
+
+        const list = document.createElement("ul");
+        list.classList.add("muted");
+        assessmentEntries.forEach((entry) => {
+          const item = document.createElement("li");
+          item.textContent = `${entry.course} → ${entry.outcome} (${levelLabels[entry.level]})${
+            entry.evidence ? `: ${entry.evidence}` : ""
+          }`;
+          list.append(item);
+        });
+        summaryAssessments.append(list);
+      };
+
+      const resetInputs = () => {
+        courseInput.value = "";
+        evidenceInput.value = "";
+      };
+
+      levelButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          levelButtons.forEach((btn) => btn.classList.remove("active"));
+          button.classList.add("active");
+          selectedLevel = button.dataset.level;
+        });
+      });
+
+      addEntryButton.addEventListener("click", () => {
+        const course = courseInput.value.trim();
+        const outcome = outcomeSelect.value;
+        if (!course || !outcome) {
+          return;
+        }
+
+        mappingEntries.push({
+          course,
+          outcome,
+          level: selectedLevel,
+          evidence: evidenceInput.value.trim(),
+        });
+
+        renderMap();
+        updateSummary();
+        resetInputs();
+      });
+
+      clearMapButton.addEventListener("click", () => {
+        mappingEntries.length = 0;
+        renderMap();
+        updateSummary();
+      });
+
+      outcomesInput.addEventListener("input", () => {
+        updateOutcomeOptions();
+        updateSummary();
+      });
+
+      updateOutcomeOptions();
+      updateSummary();
+    </script>
   </body>
 </html>
